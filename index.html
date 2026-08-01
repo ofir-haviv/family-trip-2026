@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="האתר המשפחתי לטיול ביער השחור ובשווייץ, 19–29 בספטמבר 2026"
+    />
+    <meta name="theme-color" content="#183d32" />
+    <meta property="og:title" content="הטיול המשפחתי 2026" />
+    <meta property="og:description" content="היער השחור ושווייץ · 19–29.9.2026" />
+    <title>הטיול המשפחתי 2026 | היער השחור ושווייץ</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">דילוג לתוכן</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="חזרה לראש הדף">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path d="M24 5 8 29h9l-5 9h24l-5-9h9L24 5Z" />
+            <path class="brand-snow" d="m24 5-5.5 8.3L24 11l5.5 2.3L24 5Z" />
+          </svg>
+        </span>
+        <span>
+          <strong>הטיול המשפחתי</strong>
+          <small>2026</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="ניווט ראשי">
+        <a href="#overview">מבט מהיר</a>
+        <a href="#itinerary">מסלול</a>
+        <a href="#bookings">הזמנות</a>
+        <a href="#packing">ציוד</a>
+        <a href="#important">חשוב לדעת</a>
+      </nav>
+
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="החלפת מצב תצוגה">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.2A8.4 8.4 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
+        </svg>
+      </button>
+    </header>
+
+    <div id="top" class="hero">
+      <div class="hero-scenery" aria-hidden="true">
+        <svg viewBox="0 0 1440 520" preserveAspectRatio="none">
+          <path class="mountain-back" d="M0 345 180 160l105 111L440 89l198 238L785 178l155 164 163-235 337 248v165H0Z" />
+          <path class="mountain-snow" d="m180 160 43 46 25-20 37 85-105-111Zm260-71-67 81 42-16 29 43 35-33 45 39L440 89Zm663 18-53 77 49-27 36 43 45-34 46 35-123-94Z" />
+          <path class="mountain-front" d="M0 418 186 285l135 92 174-124 136 130 199-92 164 101 203-145 283 181v92H0Z" />
+          <g class="forest">
+            <path d="m88 332-38 72h24l-28 53h84l-27-53h23l-38-72Z" />
+            <path d="m202 354-31 59h19l-22 43h68l-22-43h19l-31-59Z" />
+            <path d="m1260 320-42 79h26l-30 58h92l-30-58h26l-42-79Z" />
+            <path d="m1360 358-31 59h19l-22 43h68l-22-43h19l-31-59Z" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-content">
+        <span class="eyebrow">החופשה הגדולה שלנו</span>
+        <h1>היער השחור<br /><em>ושווייץ</em></h1>
+        <p class="hero-dates">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2" />
+            <path d="M16 3v4M8 3v4M3 10h18" />
+          </svg>
+          19–29 בספטמבר 2026
+        </p>
+        <p class="hero-summary">11 ימים של טבע, הרים, אגמים, כפרים וזמן משפחתי ביחד.</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#itinerary">למסלול המלא</a>
+          <button class="button button-ghost" id="share-button" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4" />
+            </svg>
+            שיתוף עם המשפחה
+          </button>
+        </div>
+      </div>
+
+      <aside class="countdown-card" aria-label="ספירה לאחור">
+        <span id="countdown-label">מתחילים בעוד</span>
+        <strong id="countdown-number">—</strong>
+        <span id="countdown-unit">ימים</span>
+        <div class="countdown-route">
+          <span>גרמניה</span>
+          <span class="route-line" aria-hidden="true"></span>
+          <span>שווייץ</span>
+        </div>
+      </aside>
+    </div>
+
+    <main id="main-content">
+      <section class="section section-tight" id="overview">
+        <div class="status-banner">
+          <span class="status-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>זהו תכנון ראשוני</strong>
+            <p>המסלול הוא הצעה נוחה למשפחה. פרטי טיסות, לינה והזמנות יעודכנו לאחר שיאושרו.</p>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">כל מה שצריך במקום אחד</span>
+            <h2>מבט מהיר</h2>
+          </div>
+          <button class="text-button" id="calendar-button" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M16 3v4M8 3v4M3 10h18M12 14v4M10 16h4" />
+            </svg>
+            הוספה ליומן
+          </button>
+        </div>
+
+        <div class="overview-grid">
+          <article class="summary-card">
+            <span class="summary-icon summary-icon-flight" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m2 16 20-8-2-2-8 2-5-5-2 1 3 6-4 2-2-2-2 1 2 5Z" /></svg>
+            </span>
+            <div>
+              <span>טיסות</span>
+              <strong>ממתין לעדכון</strong>
+              <small>הלוך ושוב</small>
+            </div>
+          </article>
+          <article class="summary-card">
+            <span class="summary-icon summary-icon-bed" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 11V5h4a4 4 0 0 1 4 4v2h8a2 2 0 0 1 2 2v5M3 9v12M21 13v8M3 17h18" /></svg>
+            </span>
+            <div>
+              <span>לינה</span>
+              <strong>2 אזורים</strong>
+              <small>היער השחור ושווייץ</small>
+            </div>
+          </article>
+          <article class="summary-card">
+            <span class="summary-icon summary-icon-car" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m5 11 2-5h10l2 5M3 16v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3M5 16h14M6 16v3M18 16v3" /><circle cx="6.5" cy="14" r="1" /><circle cx="17.5" cy="14" r="1" /></svg>
+            </span>
+            <div>
+              <span>תחבורה</span>
+              <strong>רכב שכור</strong>
+              <small>ממתין להזמנה</small>
+            </div>
+          </article>
+          <article class="summary-card">
+            <span class="summary-icon summary-icon-weather" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 1 1 1.2-7.8A6 6 0 0 1 20 11a3 3 0 0 1-1 5.8M8 21l2-3M13 21l2-3M18 21l2-3" /></svg>
+            </span>
+            <div>
+              <span>מזג אוויר צפוי</span>
+              <strong>8°–20°</strong>
+              <small>שכבות ומעיל גשם</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section itinerary-section" id="itinerary">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">יום אחר יום</span>
+            <h2>המסלול שלנו</h2>
+          </div>
+          <div class="filter-chips" role="group" aria-label="סינון המסלול">
+            <button class="chip active" type="button" data-filter="all">הכול</button>
+            <button class="chip" type="button" data-filter="black-forest">היער השחור</button>
+            <button class="chip" type="button" data-filter="switzerland">שווייץ</button>
+            <button class="chip" type="button" data-filter="travel">מעברים</button>
+          </div>
+        </div>
+        <div class="timeline" id="itinerary-list"></div>
+      </section>
+
+      <section class="section" id="bookings">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">פרטים שימושיים</span>
+            <h2>טיסות והזמנות</h2>
+          </div>
+        </div>
+        <div class="bookings-grid" id="bookings-list"></div>
+        <p class="privacy-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="10" width="14" height="11" rx="2" />
+            <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" />
+          </svg>
+          מטעמי פרטיות, לא שומרים באתר מספרי דרכון, פרטי תשלום או קודי הזמנה רגישים.
+        </p>
+      </section>
+
+      <section class="section packing-section" id="packing">
+        <div class="packing-layout">
+          <div>
+            <span class="section-kicker">לא שוכחים כלום</span>
+            <h2>רשימת ציוד אישית</h2>
+            <p class="section-intro">
+              כל אחד יכול לסמן במכשיר שלו מה כבר ארז. הסימונים נשמרים אוטומטית.
+            </p>
+            <div class="packing-progress" aria-live="polite">
+              <div class="progress-copy">
+                <span>התקדמות</span>
+                <strong id="packing-count">0 מתוך 0</strong>
+              </div>
+              <div class="progress-track">
+                <span id="packing-progress-bar"></span>
+              </div>
+            </div>
+          </div>
+          <div class="packing-lists" id="packing-lists"></div>
+        </div>
+      </section>
+
+      <section class="section" id="important">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">שומרים קרוב</span>
+            <h2>חשוב לדעת</h2>
+          </div>
+        </div>
+        <div class="important-grid">
+          <article class="info-card emergency-card">
+            <span class="info-card-icon" aria-hidden="true">SOS</span>
+            <h3>מספרי חירום</h3>
+            <dl>
+              <div><dt>חירום כללי באירופה</dt><dd><a href="tel:112">112</a></dd></div>
+              <div><dt>משטרה בשווייץ</dt><dd><a href="tel:117">117</a></dd></div>
+              <div><dt>אמבולנס בשווייץ</dt><dd><a href="tel:144">144</a></dd></div>
+            </dl>
+          </article>
+          <article class="info-card">
+            <span class="info-card-icon" aria-hidden="true">€</span>
+            <h3>כסף ותשלומים</h3>
+            <p>בגרמניה משתמשים באירו (€), ובשווייץ בפרנק שווייצרי (CHF). כדאי להחזיק מעט מזומן.</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-icon" aria-hidden="true">V</span>
+            <h3>כבישים ואגרות</h3>
+            <p>לכבישים המהירים בשווייץ נדרשת וינייטה. יש לוודא שהיא כלולה ברכב השכור.</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-icon" aria-hidden="true">☂</span>
+            <h3>מזג אוויר</h3>
+            <p>בספטמבר מזג האוויר משתנה במהירות, במיוחד בהרים. בודקים תחזית ערב לפני כל יום.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <span class="footer-mark" aria-hidden="true">▲</span>
+        <strong>הטיול המשפחתי 2026</strong>
+      </div>
+      <p>נבנה באהבה למשפחה · עודכן לאחרונה <span id="last-updated"></span></p>
+    </footer>
+
+    <nav class="mobile-nav" aria-label="ניווט מהיר">
+      <a href="#overview">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7v9H3Z" /><path d="M9 20v-6h6v6" /></svg>
+        <span>ראשי</span>
+      </a>
+      <a href="#itinerary">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" /><circle cx="19" cy="18" r="2" /></svg>
+        <span>מסלול</span>
+      </a>
+      <a href="#bookings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 16 20-8-2-2-8 2-5-5-2 1 3 6-4 2-2-2-2 1 2 5Z" /></svg>
+        <span>הזמנות</span>
+      </a>
+      <a href="#packing">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1 14H5L6 7ZM9 7V5a3 3 0 0 1 6 0v2" /></svg>
+        <span>ציוד</span>
+      </a>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
