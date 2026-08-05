@@ -470,6 +470,17 @@ svg {
   font-size: 14px;
 }
 
+.status-banner ul {
+  margin: 5px 0 0;
+  padding-right: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.status-banner li + li {
+  margin-top: 2px;
+}
+
 .section-heading {
   display: flex;
   margin-bottom: 30px;
@@ -819,8 +830,17 @@ svg {
   white-space: nowrap;
 }
 
+.booking-status.confirmed {
+  background: var(--forest-100);
+  color: var(--forest-700);
+}
+
 [data-theme="dark"] .booking-status {
   color: #f0c77d;
+}
+
+[data-theme="dark"] .booking-status.confirmed {
+  color: #a9d2c0;
 }
 
 .booking-details {

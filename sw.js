@@ -1,4 +1,4 @@
-const CACHE_NAME = "family-trip-2026-v1";
+const CACHE_NAME = "family-trip-2026-v2";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./favicon.svg", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
