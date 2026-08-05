@@ -128,6 +128,8 @@ const tripData = {
       type: "לינה",
       title: "Schwarzwald Tiny House Village",
       status: "מאושר",
+      publicUrl: "https://www.booking.com/hotel/de/tiny-house-village-loffingen.html",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Welschland+2+79843+Loffingen+Germany",
       details: [
         ["שהייה", "19–25.9 · 6 לילות"],
         ["כתובת", "Welschland 2, 79843 Löffingen"],
@@ -143,6 +145,8 @@ const tripData = {
       type: "לינה",
       title: "Mountain Views · אינטרלקן",
       status: "מאושר",
+      publicUrl: "https://www.booking.com/hotel/ch/mountain-views.html",
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Rutistrasse+29+3800+Interlaken+Switzerland",
       details: [
         ["שהייה", "25–29.9 · 4 לילות"],
         ["כתובת", "Rütistrasse 29, 3800 Interlaken"],
@@ -274,10 +278,78 @@ function renderBookings() {
               )
               .join("")}
           </div>
+          ${
+            booking.publicUrl
+              ? `
+                <div class="booking-actions">
+                  <a class="booking-action-primary" href="${booking.publicUrl}" target="_blank" rel="noreferrer">
+                    עמוד האירוח ב-Booking.com
+                  </a>
+                  <a class="booking-action-secondary" href="${booking.mapUrl}" target="_blank" rel="noreferrer">
+                    פתיחה במפה
+                  </a>
+                </div>
+              `
+              : ""
+          }
         </article>
       `,
     )
     .join("");
+}
+
+function renderStaysDialog() {
+  const container = document.querySelector("#stays-dialog-list");
+  if (!container) return;
+
+  const stays = tripData.bookings.filter((booking) => booking.type === "לינה");
+  container.innerHTML = stays
+    .map(
+      (stay, index) => `
+        <article class="stay-dialog-card">
+          <div class="stay-dialog-heading">
+            <span>לינה ${index + 1}</span>
+            <h3>${stay.title}</h3>
+            <span class="booking-status confirmed">${stay.status}</span>
+          </div>
+          <div class="stay-dialog-details">
+            ${stay.details
+              .filter(([label]) => !label.startsWith("פרטי"))
+              .map(
+                ([label, value]) => `
+                  <div>
+                    <span>${label}</span>
+                    <strong>${value}</strong>
+                  </div>
+                `,
+              )
+              .join("")}
+          </div>
+          <div class="stay-dialog-actions">
+            <a class="button button-primary" href="${stay.publicUrl}" target="_blank" rel="noreferrer">
+              לצפייה ב-Booking.com
+            </a>
+            <a class="stay-map-link" href="${stay.mapUrl}" target="_blank" rel="noreferrer">
+              פתיחה במפה
+            </a>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function setupStaysDialog() {
+  const dialog = document.querySelector("#stays-dialog");
+  const openButton = document.querySelector("#stays-button");
+  const closeButton = document.querySelector("#stays-dialog-close");
+  if (!dialog || !openButton || !closeButton) return;
+
+  openButton.addEventListener("click", () => dialog.showModal());
+  closeButton.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
 }
 
 function renderPacking() {
@@ -488,10 +560,12 @@ function registerServiceWorker() {
 function init() {
   renderItinerary();
   renderBookings();
+  renderStaysDialog();
   renderPacking();
   updateCountdown();
   setupFilters();
   setupTheme();
+  setupStaysDialog();
   setLastUpdated();
   registerServiceWorker();
 

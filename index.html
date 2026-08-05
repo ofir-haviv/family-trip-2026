@@ -145,7 +145,13 @@
               <small>ארקיע · 5 נוסעים</small>
             </div>
           </article>
-          <article class="summary-card">
+          <button
+            class="summary-card summary-card-button"
+            id="stays-button"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="stays-dialog"
+          >
             <span class="summary-icon summary-icon-bed" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M3 11V5h4a4 4 0 0 1 4 4v2h8a2 2 0 0 1 2 2v5M3 9v12M21 13v8M3 17h18" /></svg>
             </span>
@@ -154,7 +160,10 @@
               <strong>10 לילות</strong>
               <small>לופינגן ואינטרלקן</small>
             </div>
-          </article>
+            <svg class="summary-card-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
           <article class="summary-card">
             <span class="summary-icon summary-icon-car" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="m5 11 2-5h10l2 5M3 16v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3M5 16h14M6 16v3M18 16v3" /><circle cx="6.5" cy="14" r="1" /><circle cx="17.5" cy="14" r="1" /></svg>
@@ -281,6 +290,23 @@
       </div>
       <p>נבנה באהבה למשפחה · עודכן לאחרונה <span id="last-updated"></span></p>
     </footer>
+
+    <dialog class="stays-dialog" id="stays-dialog" aria-labelledby="stays-dialog-title">
+      <div class="stays-dialog-shell">
+        <button class="dialog-close" id="stays-dialog-close" type="button" aria-label="סגירת פרטי הלינה">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+        <header class="stays-dialog-header">
+          <span class="section-kicker">כל פרטי הלינה</span>
+          <h2 id="stays-dialog-title">איפה ישנים?</h2>
+          <p>שני מקומות הלינה המאושרים, עם שעות, כתובות וקישורים לעמודי האירוח הציבוריים.</p>
+        </header>
+        <div class="stays-dialog-list" id="stays-dialog-list"></div>
+        <p class="stays-dialog-note">
+          שינוי או ביטול הזמנה מתבצעים רק דרך חשבון Booking.com — לא דרך הקישורים הציבוריים.
+        </p>
+      </div>
+    </dialog>
 
     <nav class="mobile-nav" aria-label="ניווט מהיר">
       <a href="#overview">

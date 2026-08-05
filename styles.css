@@ -517,7 +517,7 @@ svg {
 
 .overview-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
@@ -531,6 +531,41 @@ svg {
   border-radius: var(--radius-md);
   background: var(--paper);
   box-shadow: var(--shadow-sm);
+}
+
+.summary-card-button {
+  position: relative;
+  width: 100%;
+  color: var(--ink);
+  font: inherit;
+  text-align: right;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.summary-card-button:hover,
+.summary-card-button:focus-visible {
+  border-color: var(--forest-700);
+  box-shadow: 0 12px 30px rgba(28, 52, 43, 0.14);
+  transform: translateY(-2px);
+}
+
+.summary-card-button:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 3px;
+}
+
+.summary-card-arrow {
+  width: 18px;
+  margin-right: auto;
+  fill: none;
+  stroke: var(--forest-700);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
 }
 
 .summary-icon {
@@ -867,6 +902,195 @@ svg {
   font-weight: 600;
 }
 
+.booking-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  gap: 14px;
+}
+
+.booking-actions a {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.booking-action-primary {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--forest-800);
+  color: #fff;
+}
+
+.booking-action-secondary {
+  color: var(--forest-700);
+}
+
+[data-theme="dark"] .booking-action-secondary {
+  color: #82b8a2;
+}
+
+.stays-dialog {
+  width: min(960px, calc(100% - 36px));
+  max-height: min(90vh, 820px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+}
+
+.stays-dialog::backdrop {
+  background: rgba(5, 22, 17, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.stays-dialog-shell {
+  position: relative;
+  max-height: min(90vh, 820px);
+  padding: 38px;
+  overflow-y: auto;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.dialog-close svg {
+  width: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.8;
+}
+
+.stays-dialog-header {
+  padding-left: 58px;
+}
+
+.stays-dialog-header h2 {
+  margin: 3px 0 5px;
+  font-family: "Secular One", "Heebo", sans-serif;
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.stays-dialog-header p {
+  max-width: 610px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.stays-dialog-list {
+  display: grid;
+  margin-top: 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stay-dialog-card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+}
+
+.stay-dialog-heading {
+  position: relative;
+  padding-left: 74px;
+}
+
+.stay-dialog-heading > span:first-child {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stay-dialog-heading h3 {
+  margin: 3px 0 0;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.stay-dialog-heading .booking-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.stay-dialog-details {
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stay-dialog-details div {
+  display: flex;
+  min-width: 0;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+  flex-direction: column;
+}
+
+.stay-dialog-details span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.stay-dialog-details strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stay-dialog-actions {
+  display: flex;
+  margin-top: 22px;
+  align-items: center;
+  gap: 14px;
+}
+
+.stay-dialog-actions .button {
+  min-height: 42px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+
+.stay-map-link {
+  color: var(--forest-700);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+[data-theme="dark"] .stay-map-link {
+  color: #82b8a2;
+}
+
+.stays-dialog-note {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .privacy-note {
   display: flex;
   margin: 20px 0 0;
@@ -997,7 +1221,7 @@ svg {
 
 .important-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 
@@ -1245,6 +1469,27 @@ svg {
     padding: 18px;
   }
 
+  .summary-card-arrow {
+    margin-right: auto;
+  }
+
+  .stays-dialog-shell {
+    padding: 28px 18px;
+  }
+
+  .dialog-close {
+    top: 18px;
+    left: 18px;
+  }
+
+  .stays-dialog-header {
+    padding-left: 48px;
+  }
+
+  .stays-dialog-list {
+    grid-template-columns: 1fr;
+  }
+
   .filter-chips {
     width: 100%;
     flex-wrap: nowrap;
@@ -1317,7 +1562,7 @@ svg {
     background: color-mix(in srgb, var(--paper) 94%, transparent);
     box-shadow: 0 -8px 28px rgba(15, 40, 32, 0.09);
     backdrop-filter: blur(14px);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .mobile-nav a {
