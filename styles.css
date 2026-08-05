@@ -119,18 +119,17 @@ svg {
   display: grid;
   width: 39px;
   height: 39px;
+  overflow: hidden;
   place-items: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 13px;
+  background: #fff;
 }
 
-.brand-mark svg {
-  width: 26px;
-  fill: #e3bc75;
-}
-
-.brand-mark .brand-snow {
-  fill: #fff;
+.brand-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand > span:last-child {

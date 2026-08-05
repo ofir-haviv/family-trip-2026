@@ -1,4 +1,4 @@
-const CACHE_NAME = "family-trip-2026-v4";
+const CACHE_NAME = "family-trip-2026-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,7 +7,8 @@ const ASSETS = [
   "./suggestions.html",
   "./suggestions.css",
   "./suggestions.js",
-  "./favicon.svg",
+  "./site-icon-192.png",
+  "./site-icon-512.png",
   "./manifest.webmanifest",
 ];
 
