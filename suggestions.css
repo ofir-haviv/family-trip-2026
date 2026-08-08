@@ -594,16 +594,6 @@
   background: #202825;
 }
 
-.summary-benefit-none {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--muted);
-}
-
-.summary-benefit-none > span {
-  background: var(--line);
-}
-
 .summary-benefit-free {
   background: var(--forest-700);
 }
@@ -722,18 +712,6 @@
 .attraction-benefit-variant {
   border-color: #e4bc75;
   background: linear-gradient(135deg, #3c4743, #171d1b);
-}
-
-.attraction-benefit-none {
-  border-color: var(--line);
-  background: var(--cream);
-  color: var(--muted);
-}
-
-.attraction-benefit-none .benefit-card-symbol {
-  border-color: var(--line);
-  background: var(--line);
-  color: var(--muted);
 }
 
 .attraction-benefit-free {

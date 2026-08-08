@@ -794,10 +794,16 @@ function renderStopBenefits(benefits) {
     `;
   }
 
+  const relevantBenefits = [
+    isAcceptedBenefit(benefits.red) ? renderBenefitCard("red", benefits.red) : "",
+    isAcceptedBenefit(benefits.black) ? renderBenefitCard("black", benefits.black) : "",
+  ].filter(Boolean);
+
+  if (!relevantBenefits.length) return "";
+
   return `
     <div class="stop-benefits">
-      ${renderBenefitCard("red", benefits.red)}
-      ${renderBenefitCard("black", benefits.black)}
+      ${relevantBenefits.join("")}
     </div>
   `;
 }
@@ -822,18 +828,25 @@ function getSuggestionCardStatus(suggestion) {
 function renderSuggestionCardSummary(status) {
   if (!status.hasData) return "";
 
-  const pills = [
-    `<span class="summary-benefit ${status.red ? "summary-benefit-red" : "summary-benefit-none"}">
-      <span aria-hidden="true">${status.red ? "H" : "×"}</span> אדום
-    </span>`,
-    `<span class="summary-benefit ${status.black ? "summary-benefit-black" : "summary-benefit-none"}">
-      <span aria-hidden="true">${status.black ? "S" : "×"}</span> ${status.blackVariantOnly ? "שחור מיוחד" : "שחור"}
-    </span>`,
-  ];
+  const pills = [];
+
+  if (status.red) {
+    pills.push('<span class="summary-benefit summary-benefit-red"><span aria-hidden="true">H</span> אדום</span>');
+  }
+
+  if (status.black) {
+    pills.push(
+      `<span class="summary-benefit summary-benefit-black"><span aria-hidden="true">S</span> ${
+        status.blackVariantOnly ? "שחור מיוחד" : "שחור"
+      }</span>`,
+    );
+  }
 
   if (status.free) {
     pills.push('<span class="summary-benefit summary-benefit-free"><span aria-hidden="true">✓</span> חינם</span>');
   }
+
+  if (!pills.length) return "";
 
   return `<div class="summary-benefits" aria-label="הטבות כרטיסים">${pills.join("")}</div>`;
 }
