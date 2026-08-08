@@ -602,6 +602,123 @@ const activitySuggestions = [
   },
 ];
 
+const CARD_SOURCES = {
+  red: "https://www.hochschwarzwald.de/_Resources/Persistent/eb77307150357c762114f2245cd782ed07b9b796/Hochschwarzwald%20Card%20Leistungen%20ab%20Juli%202026.pdf",
+  black:
+    "https://www.schwarzwald-tourismus.info/_Resources/Persistent/0e08e7eb75db93f4ad0379544ee6d8cec3191ac8/SchwarzwaldCard%202026_PDF-%C3%9Cbersicht.pdf",
+};
+
+const attractionCardBenefits = {
+  "europa-park": [
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "אין הטבה בכרטיס האדום." },
+      black: {
+        status: "variant",
+        short: "גרסה מיוחדת",
+        detail: "יום כניסה אחד כלול רק ב-SchwarzwaldCard הכולל Europa-Park, לא בכרטיס הרגיל.",
+      },
+    },
+  ],
+  rulantica: [
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "אין הטבה בכרטיס האדום." },
+      black: { status: "none", short: "לא מתקבל", detail: "גם גרסת Europa-Park אינה כוללת את Rulantica." },
+    },
+  ],
+  "titisee-badeparadies": [
+    {
+      red: { status: "included", short: "שיט חינם", detail: "שיט מעגלי אחד של כ-25 דקות באגם במהלך השהייה." },
+      black: { status: "none", short: "לא מתקבל", detail: "השיט אינו מופיע ברשימת שותפי SchwarzwaldCard 2026." },
+    },
+    {
+      red: {
+        status: "discount",
+        short: "30% הנחה",
+        detail: "30% הנחה פעם אחת לכרטיס 4 שעות ב-Galaxy או Palmenoase; נדרשת הזמנה מקוונת.",
+      },
+      black: { status: "none", short: "לא מתקבל", detail: "Badeparadies אינו שותף בכרטיס השחור ב-2026." },
+    },
+  ],
+  "feldberg-fundorena": [
+    {
+      red: { status: "included", short: "חינם", detail: "עלייה וירידה אחת ברכבל, כולל כניסה ל-Feldbergturm." },
+      black: { status: "discount", short: "50% הנחה", detail: "50% הנחה על כרטיס עלייה וירידה, כולל Feldbergturm." },
+    },
+    {
+      red: {
+        status: "included",
+        short: "פעילות חינם",
+        detail: "60 דקות בפארק החבלים המקורה ועוד 60 דקות בטרמפולינות או בולדר, פעם אחת בשהייה.",
+      },
+      black: {
+        status: "included",
+        short: "פעילות חינם",
+        detail: "60 דקות באחת מפעילויות הפנים; פארק החבלים החיצוני כולל שעתיים.",
+      },
+    },
+  ],
+  "todtnau-day": [
+    {
+      red: { status: "included", short: "חינם", detail: "כניסה חד-פעמית למפלים ולגשר BLACKFORESTLINE באמצעות ה-QR." },
+      black: { status: "none", short: "לא מתקבל", detail: "המפלים אינם מופיעים ברשימת SchwarzwaldCard 2026." },
+    },
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "Hasenhorn Coaster אינו מופיע ברשימת הטבות 2026." },
+      black: { status: "none", short: "לא מתקבל", detail: "Hasenhorn Coaster אינו שותף בכרטיס השחור." },
+    },
+  ],
+  "gutach-day": [
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "המוזיאון אינו מופיע ברשימת הטבות הכרטיס האדום." },
+      black: { status: "included", short: "כניסה חינם", detail: "כניסה חד-פעמית חינם למוזיאון הפתוח Vogtsbauernhof." },
+    },
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "מגלשות גוטאך אינן שותפות בכרטיס האדום." },
+      black: { status: "none", short: "לא מתקבל", detail: "מגלשות גוטאך אינן מופיעות ברשימת SchwarzwaldCard 2026." },
+    },
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "הטבת כרטיס האורח המקומי של טריברג אינה הכרטיס האדום." },
+      black: {
+        status: "included",
+        short: "כרטיס משולב חינם",
+        detail: "כניסה חינם למפלים, למוזיאון היער השחור ול-Triberg-Land/Fantasy.",
+      },
+    },
+  ],
+  "park-all-senses": [
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "הפארק אינו מופיע ברשימת הטבות הכרטיס האדום." },
+      black: { status: "none", short: "לא מתקבל", detail: "הפארק אינו מופיע ברשימת SchwarzwaldCard 2026." },
+    },
+    {
+      free: { short: "חינם לכולם", detail: "הביקור בטחנה ובסביבה אינו דורש כרטיס כניסה; קניות ואוכל בתשלום." },
+    },
+  ],
+  "vogelpark-steinen": [
+    {
+      red: { status: "none", short: "לא מתקבל", detail: "Vogelpark Steinen אינו שותף בכרטיס האדום." },
+      black: { status: "included", short: "כניסה חינם", detail: "כניסה חד-פעמית חינם לפארק הציפורים והקופים." },
+    },
+  ],
+  "wutach-gorge": [
+    {
+      free: { short: "חינם לכולם", detail: "ההליכה בקניון אינה כרוכה בדמי כניסה, ולכן אין צורך באחד הכרטיסים." },
+    },
+  ],
+  steinwasen: [
+    {
+      red: { status: "included", short: "כניסה חינם", detail: "כניסה חד-פעמית חינם לפארק, לגשר ולמתקנים הכלולים." },
+      black: { status: "none", short: "לא מתקבל", detail: "Steinwasen Park אינו מופיע ברשימת SchwarzwaldCard 2026." },
+    },
+  ],
+  "rhine-falls-transfer": [
+    {
+      red: { status: "none", short: "לא תקף", detail: "המפלים נמצאים בשווייץ ומחוץ לרשת הכרטיס." },
+      black: { status: "none", short: "לא תקף", detail: "המפלים נמצאים בשווייץ ומחוץ לרשת הכרטיס." },
+    },
+  ],
+};
+
 function renderSchedule() {
   const container = document.querySelector("#schedule-list");
   container.innerHTML = recommendedSchedule
@@ -633,6 +750,94 @@ function renderStopLinks(links) {
     .join("");
 }
 
+function isAcceptedBenefit(benefit) {
+  return benefit && ["included", "discount", "variant"].includes(benefit.status);
+}
+
+function renderBenefitCard(type, benefit) {
+  const name = type === "red" ? "כרטיס אדום" : "כרטיס שחור";
+  const letter = type === "red" ? "H" : "S";
+  const source = CARD_SOURCES[type];
+
+  return `
+    <a
+      class="attraction-benefit attraction-benefit-${type} attraction-benefit-${benefit.status}"
+      href="${source}"
+      target="_blank"
+      rel="noreferrer"
+      title="${benefit.detail}"
+      aria-label="${name}: ${benefit.short}. ${benefit.detail}"
+    >
+      <span class="benefit-card-symbol" aria-hidden="true">${letter}</span>
+      <span>
+        <strong>${name}</strong>
+        <small>${benefit.short}</small>
+      </span>
+    </a>
+  `;
+}
+
+function renderStopBenefits(benefits) {
+  if (!benefits) return "";
+
+  if (benefits.free) {
+    return `
+      <div class="stop-benefits">
+        <span class="attraction-benefit attraction-benefit-free" title="${benefits.free.detail}">
+          <span class="benefit-card-symbol" aria-hidden="true">✓</span>
+          <span>
+            <strong>${benefits.free.short}</strong>
+            <small>אין צורך בכרטיס</small>
+          </span>
+        </span>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="stop-benefits">
+      ${renderBenefitCard("red", benefits.red)}
+      ${renderBenefitCard("black", benefits.black)}
+    </div>
+  `;
+}
+
+function getSuggestionCardStatus(suggestion) {
+  const stopBenefits = attractionCardBenefits[suggestion.id] || [];
+  const acceptedBlackBenefits = stopBenefits
+    .map((benefits) => benefits?.black)
+    .filter(isAcceptedBenefit);
+
+  return {
+    hasData: stopBenefits.length > 0,
+    red: stopBenefits.some((benefits) => isAcceptedBenefit(benefits?.red)),
+    black: acceptedBlackBenefits.length > 0,
+    blackVariantOnly:
+      acceptedBlackBenefits.length > 0 &&
+      acceptedBlackBenefits.every((benefit) => benefit.status === "variant"),
+    free: stopBenefits.length > 0 && stopBenefits.every((benefits) => benefits?.free),
+  };
+}
+
+function renderSuggestionCardSummary(status) {
+  if (!status.hasData) return "";
+
+  const pills = [
+    `<span class="summary-benefit ${status.red ? "summary-benefit-red" : "summary-benefit-none"}">
+      <span aria-hidden="true">${status.red ? "H" : "×"}</span> אדום
+    </span>`,
+    `<span class="summary-benefit ${status.black ? "summary-benefit-black" : "summary-benefit-none"}">
+      <span aria-hidden="true">${status.black ? "S" : "×"}</span> ${status.blackVariantOnly ? "שחור מיוחד" : "שחור"}
+    </span>`,
+  ];
+
+  if (status.free) {
+    pills.push('<span class="summary-benefit summary-benefit-free"><span aria-hidden="true">✓</span> חינם</span>');
+  }
+
+  return `<div class="summary-benefits" aria-label="הטבות כרטיסים">${pills.join("")}</div>`;
+}
+
 function renderSuggestions() {
   const container = document.querySelector("#suggestions-grid");
   if (!activitySuggestions.length) {
@@ -641,13 +846,16 @@ function renderSuggestions() {
   }
 
   container.innerHTML = activitySuggestions
-    .map(
-      (suggestion) => `
+    .map((suggestion) => {
+      const cardStatus = getSuggestionCardStatus(suggestion);
+      return `
         <details
           class="suggestion-card"
           id="${suggestion.id}"
           data-region="${suggestion.region}"
           data-weatherproof="${suggestion.weatherproof}"
+          data-red-card="${cardStatus.red}"
+          data-black-card="${cardStatus.black}"
         >
           <summary>
             <div class="suggestion-topline">
@@ -661,15 +869,17 @@ function renderSuggestions() {
               <span>${suggestion.drive}</span>
               <span>${suggestion.weather}</span>
             </div>
+            ${renderSuggestionCardSummary(cardStatus)}
           </summary>
           <div class="suggestion-content">
             <ol class="route-list">
               ${suggestion.stops
                 .map(
-                  (stop) => `
+                  (stop, stopIndex) => `
                     <li class="route-stop">
                       <h4>${stop.name}</h4>
                       <p>${stop.description}</p>
+                      ${renderStopBenefits(attractionCardBenefits[suggestion.id]?.[stopIndex])}
                       <div class="stop-links">${renderStopLinks(stop.links)}</div>
                     </li>
                   `,
@@ -682,8 +892,8 @@ function renderSuggestions() {
             </div>
           </div>
         </details>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
@@ -698,7 +908,9 @@ function setupFilters() {
         card.hidden =
           filter !== "all" &&
           card.dataset.region !== filter &&
-          !(filter === "weatherproof" && card.dataset.weatherproof === "true");
+          !(filter === "weatherproof" && card.dataset.weatherproof === "true") &&
+          !(filter === "red-card" && card.dataset.redCard === "true") &&
+          !(filter === "black-card" && card.dataset.blackCard === "true");
       });
     });
   });
