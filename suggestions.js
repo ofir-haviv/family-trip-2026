@@ -719,6 +719,280 @@ const attractionCardBenefits = {
   ],
 };
 
+const attractionPrices = {
+  "europa-park": [
+    {
+      name: "Europa-Park",
+      adult: "€67–76",
+      child: "€56.50–65 (גיל 4–11)",
+      label: "מחיר אונליין דינמי",
+      note: "ילדים עד גיל 3 חינם; בקופה תוספת €10. המחיר המדויק נקבע לפי תאריך.",
+      url: "https://www.europapark.de/en/theme-park/tickets-offers",
+    },
+  ],
+  rulantica: [
+    {
+      name: "Rulantica",
+      adult: "€41–54",
+      child: "€38–51 (גיל 4–11)",
+      label: "מחיר אונליין דינמי",
+      note: "ילדים עד גיל 3 חינם; בקופה תוספת €6. המחיר המדויק נקבע לפי תאריך.",
+      url: "https://www.europapark.de/en/rulantica/tickets-offers/tickets-offers",
+    },
+  ],
+  "titisee-badeparadies": [
+    {
+      name: "שיט באגם טיטיזי",
+      adult: "כ-€7.50",
+      child: "כ-€3 (עד גיל 14)",
+      label: "מחיר תכנון משוער",
+      note: "המחיר משתנה בין מפעילי הסירות; הכרטיס האדום כולל שיט אחד.",
+      url: "https://www.boote-titisee.de/",
+    },
+    {
+      name: "Badeparadies Schwarzwald",
+      adult: "כ-€21–24 / 4 שעות",
+      child: "אותו מחיר",
+      label: "מחיר אונליין דינמי",
+      note: "בסוף שבוע לרוב תוספת €3. Palmenoase היא 16+ למעט ימי משפחה; Galaxy מתאים למשפחות.",
+      url: "https://www.badeparadies-schwarzwald.de/de/informationen/oeffnungszeiten-tarife.php",
+    },
+  ],
+  "feldberg-fundorena": [
+    {
+      name: "Feldbergbahn",
+      adult: "€19",
+      child: "€10 (ילידי 2009–2020)",
+      note: "הלוך ושוב כולל Feldbergturm; ילידי 2021 ואילך חינם.",
+      url: "https://www.feldberg-erlebnis.de/sommer/tickets-preise",
+    },
+    {
+      name: "FUNDORENA",
+      adult: "€10–16",
+      child: "€7–11 (לפי גיל)",
+      label: "מחירון אחרון: 06/2025",
+      note: "המחיר תלוי בפעילות: בולדר, טרמפולינות או חבלים; גרביים או נעליים עשויות לעלות €4.",
+      url: "https://fundorena.de/media/2025/06/fundorena_flyer.pdf",
+    },
+  ],
+  "todtnau-day": [
+    {
+      name: "מפלי טודנאו ו-BLACKFORESTLINE",
+      adult: "€2.50 / €12 עם הגשר",
+      child: "€1.50 / €9 (גיל 6–14)",
+      label: "מחירון אחרון: 2025",
+      note: "ילדים עד גיל 5 חינם. המחיר הגבוה הוא כרטיס משולב למפל ולגשר.",
+      url: "https://todtnauer-wasserfaelle.de/eintritt/",
+    },
+    {
+      name: "Hasenhorn Coaster",
+      adult: "€7 / €15 משולב",
+      child: "€6.50 / €13 (גיל 4–15)",
+      note: "המחיר הראשון למגלשה בלבד; המשולב כולל עלייה ברכבל וירידה במגלשה.",
+      url: "https://www.hasenhorn-rodelbahn.de/preise/",
+    },
+  ],
+  "gutach-day": [
+    {
+      name: "Vogtsbauernhof",
+      adult: "€13",
+      child: "€7 (גיל 6–17)",
+      note: "עד גיל 5 חינם. כרטיס משפחתי ל-3 ילדים ומעלה: €42.",
+      url: "https://www.vogtsbauernhof.de/besuch/oeffnungszeiten-preise",
+    },
+    {
+      name: "Sommerrodelbahn Gutach",
+      adult: "€4.50 לנסיעה",
+      child: "€3.50 (גיל 3–14)",
+      note: "כרטיס משפחתי ל-2 מבוגרים ו-2 ילדים: €15; קיימות חבילות 6 ו-10 נסיעות.",
+      url: "https://www.sommerrodelbahn-gutach.de/infos/preise/",
+    },
+    {
+      name: "מפלי טריברג",
+      adult: "€9",
+      child: "€8.50 (גיל 6–17)",
+      note: "עד גיל 5 חינם. כרטיס משפחתי להורים ולילדיהם עד 17: €20.",
+      url: "https://www.triberg.de/tourismus-freizeit/tourismus-freizeit/natur-erlebnis/deutschlands-hoechste-wasserfaelle",
+    },
+  ],
+  "park-all-senses": [
+    {
+      name: "Park mit allen Sinnen",
+      adult: "€7.50",
+      child: "€4.50 (גיל 3–15)",
+      note: "ילדים עד גיל 2 חינם.",
+      url: "https://www.parkmitallensinnen.de/ihr-besuch/",
+    },
+    {
+      name: "Hexenlochmühle",
+      adult: "חינם",
+      child: "חינם",
+      icon: "✓",
+      note: "הביקור בטחנה ובסביבה חינם; אוכל וקניות בתשלום.",
+      url: "https://www.hochschwarzwald.de/en/attractions/hexenlochmuehle",
+    },
+  ],
+  "vogelpark-steinen": [
+    {
+      name: "Vogelpark Steinen",
+      adult: "€20",
+      child: "€10 (גיל 4–11)",
+      note: "עד גיל 3 חינם. כרטיס משפחתי ל-2 מבוגרים ועד 3 ילדים: €100 לשני ביקורים.",
+      url: "https://www.vogelpark-steinen.de/eintrittspreise.html",
+    },
+  ],
+  "wutach-gorge": [
+    {
+      name: "Wutachschlucht",
+      adult: "חינם",
+      child: "חינם",
+      icon: "✓",
+      note: "אין דמי כניסה למסלולי שמורת הטבע.",
+      url: "https://www.hochschwarzwald.de/en/experience/hiking/wutach-gorge",
+    },
+  ],
+  steinwasen: [
+    {
+      name: "Steinwasen Park",
+      adult: "€29",
+      child: "€25 (גיל 4–11)",
+      note: "עד גיל 3 חינם. המחיר כולל את פארק החיות, הגשר והמתקנים.",
+      url: "https://www.steinwasen-park.de/steinwasen-tickets.html",
+    },
+  ],
+  "rhine-falls-transfer": [
+    {
+      name: "מפלי הריין",
+      adult: "חינם / CHF 5",
+      child: "חינם / CHF 3 (גיל 6–15)",
+      icon: "CHF",
+      note: "התצפית בגדה הצפונית חינם; המחיר הוא למתחם Schloss Laufen. עד גיל 5 חינם.",
+      url: "https://rheinfall.ch/en/inform/opening-hours-prices/list",
+    },
+  ],
+  "aare-giessbach": [
+    {
+      name: "Aareschlucht",
+      adult: "CHF 13",
+      child: "CHF 8 (גיל 6–15)",
+      icon: "CHF",
+      note: "עד גיל 5 חינם. כרטיס משולב עם רכבת מפלי רייכנבאך: CHF 25 / CHF 16.",
+      url: "https://aareschlucht.ch/en/info/information",
+    },
+    {
+      name: "מפלי גייסבך והפוניקולר",
+      adult: "CHF 14 הלוך ושוב",
+      child: "CHF 7 (גיל 6–16)",
+      icon: "CHF",
+      note: "המפלים עצמם חינם; המחיר הוא לפוניקולר. עד גיל 5 חינם.",
+      url: "https://shop.giessbach.ch/en/funicular-tickets",
+    },
+  ],
+  "oberhofen-thun": [
+    {
+      name: "טירת אוברהופן",
+      adult: "CHF 15",
+      child: "CHF 6 (גיל 6–16)",
+      icon: "CHF",
+      note: "עד גיל 5 חינם. משפחה: CHF 30 ל-2 מבוגרים ועד 4 ילדים; הגנים חינם.",
+      url: "https://www.schlossoberhofen.ch/en/information/besucherinfos",
+    },
+    {
+      name: "תון או שיט באגם",
+      adult: "חינם בעיר / CHF 83",
+      child: "חינם / CHF 15 (גיל 6–15)",
+      icon: "CHF",
+      note: "העיר העתיקה חינם. המחיר הוא לכרטיס יום במחלקה 2 לשני האגמים; נסיעה בודדת תלויה במסלול.",
+      url: "https://shop.bls-schiff.ch/de/ticket/tageskarten",
+    },
+  ],
+  "lauterbrunnen-wengen": [
+    {
+      name: "עמק לאוטרברונן ומפל שטאובאך",
+      adult: "חינם",
+      child: "חינם",
+      icon: "✓",
+      note: "העמק והתצפית הציבורית במפל אינם דורשים כרטיס.",
+      url: "https://lauterbrunnen.swiss/en/",
+    },
+    {
+      name: "מפלי טרומלבך",
+      adult: "CHF 18",
+      child: "CHF 8 (גיל 6–15)",
+      icon: "CHF",
+      note: "ילדים מתחת לגיל 4 אינם מורשים להיכנס.",
+      url: "https://www.truemmelbachfaelle.ch/",
+    },
+    {
+      name: "רכבת לאוטרברונן–וונגן",
+      adult: "כ-CHF 14.40 הלוך ושוב",
+      child: "כ-CHF 7.20 (גיל 6–15)",
+      icon: "CHF",
+      label: "הערכת מחיר — לבדוק לפני נסיעה",
+      note: "המחיר הרשמי מוצג דינמית לפי תאריך ומסלול במערכת Jungfrau Railways.",
+      url: "https://www.jungfrau.ch/en-gb/wengen/",
+    },
+  ],
+  titlis: [
+    {
+      name: "Titlis · Engelberg",
+      adult: "CHF 102 הלוך ושוב",
+      child: "CHF 51 (גיל 6–15)",
+      icon: "CHF",
+      note: "עד גיל 5 חינם; Junior Card מאפשר לילדים לנסוע חינם. Ice Flyer בתוספת CHF 12.",
+      url: "https://www.engelberg.ch/en/cable-cars/prices-summer/",
+    },
+  ],
+  "brienz-rothorn": [
+    {
+      name: "Brienz Rothorn Bahn",
+      adult: "CHF 98 הלוך ושוב",
+      child: "CHF 10 (גיל 6–15)",
+      icon: "CHF",
+      note: "Junior Card: ילד חינם. שמירת מושב מומלצת ובתוספת CHF 8.",
+      url: "https://brienz-rothorn-bahn.ch/en/fahrplan-preise/",
+    },
+    {
+      name: "ברינץ",
+      adult: "חינם",
+      child: "חינם",
+      icon: "✓",
+      note: "הטיילת והכפר פתוחים לציבור ללא דמי כניסה.",
+      url: "https://www.brienz.ch/",
+    },
+  ],
+  "grindelwald-first": [
+    {
+      name: "Grindelwald First",
+      adult: "כ-CHF 75–80 הלוך ושוב",
+      child: "כ-CHF 35–40 (גיל 6–15)",
+      icon: "CHF",
+      label: "הערכת מחיר — לבדוק לפני הזמנה",
+      note: "Cliff Walk חינם לאחר העלייה; מתקני האקסטרים בתשלום נוסף. עד גיל 5 חינם.",
+      url: "https://www.jungfrau.ch/en-gb/grindelwaldfirst/",
+    },
+  ],
+  "interlaken-flex": [
+    {
+      name: "Harder Kulm",
+      adult: "כ-CHF 38–40 הלוך ושוב",
+      child: "כ-CHF 19–20 (גיל 6–15)",
+      icon: "CHF",
+      label: "הערכת מחיר — לבדוק לפני נסיעה",
+      note: "עד גיל 5 חינם; Half Fare ו-Swiss Travel Pass מעניקים בדרך כלל 50% הנחה.",
+      url: "https://www.jungfrau.ch/en-gb/harder-kulm/",
+    },
+    {
+      name: "אינטרלקן או שיט באגם",
+      adult: "חינם בעיר / CHF 83",
+      child: "חינם / CHF 15 (גיל 6–15)",
+      icon: "CHF",
+      note: "אינטרלקן ו-Höhematte חינם. המחיר הוא לכרטיס יום במחלקה 2 לשני האגמים.",
+      url: "https://shop.bls-schiff.ch/de/ticket/tageskarten",
+    },
+  ],
+};
+
 function renderSchedule() {
   const container = document.querySelector("#schedule-list");
   container.innerHTML = recommendedSchedule
@@ -808,6 +1082,32 @@ function renderStopBenefits(benefits) {
   `;
 }
 
+function renderStopPrice(price) {
+  if (!price) return "";
+
+  return `
+    <div class="stop-price">
+      <span
+        class="stop-price-icon ${(price.icon || "€").length > 1 ? "stop-price-icon-code" : ""}"
+        aria-hidden="true"
+      >${price.icon || "€"}</span>
+      <div class="stop-price-main">
+        <span class="stop-price-label">${price.label || "מחיר רגיל"}</span>
+        <div class="stop-price-values">
+          <span><small>מבוגר</small><strong><bdi>${price.adult}</bdi></strong></span>
+          <span><small>ילד</small><strong><bdi>${price.child}</bdi></strong></span>
+        </div>
+        ${price.note ? `<p>${price.note}</p>` : ""}
+      </div>
+      ${
+        price.url
+          ? `<a href="${price.url}" target="_blank" rel="noreferrer" aria-label="מחירים רשמיים: ${price.name}">מקור רשמי</a>`
+          : ""
+      }
+    </div>
+  `;
+}
+
 function getSuggestionCardStatus(suggestion) {
   const stopBenefits = attractionCardBenefits[suggestion.id] || [];
   const acceptedBlackBenefits = stopBenefits
@@ -892,6 +1192,7 @@ function renderSuggestions() {
                     <li class="route-stop">
                       <h4>${stop.name}</h4>
                       <p>${stop.description}</p>
+                      ${renderStopPrice(attractionPrices[suggestion.id]?.[stopIndex])}
                       ${renderStopBenefits(attractionCardBenefits[suggestion.id]?.[stopIndex])}
                       <div class="stop-links">${renderStopLinks(stop.links)}</div>
                     </li>
