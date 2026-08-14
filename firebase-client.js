@@ -12,8 +12,8 @@ import {
   doc,
   getFirestore,
   onSnapshot,
+  runTransaction,
   serverTimestamp,
-  writeBatch,
 } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -85,7 +85,26 @@ function getSuggestionMapUrl(suggestion) {
   );
 }
 
-export function saveScheduleAssignment(date, suggestion, user, previousDate = null) {
+function assignmentFromExisting(date, assignment, user) {
+  return {
+    date,
+    suggestionId: assignment.suggestionId,
+    title: assignment.title,
+    summary: assignment.summary,
+    region: assignment.region,
+    tags: assignment.tags,
+    mapUrl: assignment.mapUrl,
+    updatedBy: user.email,
+    updatedAt: serverTimestamp(),
+  };
+}
+
+export function saveScheduleAssignment(
+  date,
+  suggestion,
+  user,
+  previousDate = null,
+) {
   if (!isAuthorizedUser(user)) {
     throw new Error("אין הרשאה לעדכן את הלו״ז.");
   }
@@ -95,24 +114,51 @@ export function saveScheduleAssignment(date, suggestion, user, previousDate = nu
     throw new Error("אי אפשר לשבץ את הפעילות בתאריך הזה.");
   }
 
-  const batch = writeBatch(db);
-  if (previousDate && previousDate !== date) {
-    batch.delete(doc(db, "schedule", previousDate));
-  }
+  const targetRef = doc(db, "schedule", date);
+  const sourceRef =
+    previousDate && previousDate !== date
+      ? doc(db, "schedule", previousDate)
+      : null;
 
-  batch.set(doc(db, "schedule", date), {
-    date,
-    suggestionId: suggestion.id,
-    title: suggestion.title,
-    summary: suggestion.summary,
-    region: suggestion.region,
-    tags: [suggestion.duration, suggestion.weather],
-    mapUrl: getSuggestionMapUrl(suggestion),
-    updatedBy: user.email,
-    updatedAt: serverTimestamp(),
+  return runTransaction(db, async (transaction) => {
+    let targetAssignment = null;
+    if (sourceRef) {
+      const sourceSnapshot = await transaction.get(sourceRef);
+      const targetSnapshot = await transaction.get(targetRef);
+
+      if (
+        !sourceSnapshot.exists() ||
+        sourceSnapshot.data().suggestionId !== suggestion.id
+      ) {
+        throw new Error("הלו״ז השתנה בינתיים. נסו שוב.");
+      }
+
+      targetAssignment = targetSnapshot.exists() ? targetSnapshot.data() : null;
+    }
+
+    if (sourceRef) {
+      if (targetAssignment) {
+        transaction.set(
+          sourceRef,
+          assignmentFromExisting(previousDate, targetAssignment, user),
+        );
+      } else {
+        transaction.delete(sourceRef);
+      }
+    }
+
+    transaction.set(targetRef, {
+      date,
+      suggestionId: suggestion.id,
+      title: suggestion.title,
+      summary: suggestion.summary,
+      region: suggestion.region,
+      tags: [suggestion.duration, suggestion.weather],
+      mapUrl: getSuggestionMapUrl(suggestion),
+      updatedBy: user.email,
+      updatedAt: serverTimestamp(),
+    });
   });
-
-  return batch.commit();
 }
 
 export function removeScheduleAssignment(date, user) {

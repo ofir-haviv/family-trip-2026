@@ -45,8 +45,8 @@ const recommendedSchedule = [
     isoDate: "2026-09-25",
     date: "ו׳ · 25.9",
     region: "יום מעבר",
-    title: "מפלי הריין בדרך לאינטרלקן",
-    description: "עצירה של שעה עד שעה וחצי בדרך — לא יום פעילות מלא.",
+    title: "מפלי הריין ו-Lindt בדרך לאינטרלקן",
+    description: "יום מעבר עם שתי עצירות: מפלי הריין ומוזיאון Lindt Home of Chocolate.",
     suggestionId: "rhine-falls-transfer",
   },
   {
@@ -371,11 +371,11 @@ const activitySuggestions = [
     region: "black-forest",
     regionLabel: "יום מעבר",
     fit: "עצירה בדרך",
-    title: "מפלי הריין",
-    summary: "עצירה טבעית בין לופינגן לאינטרלקן — לא כדאי להקדיש לה יום נפרד.",
-    duration: "1–1.5 שעות",
-    drive: "על ציר הנסיעה לשווייץ",
-    weather: "אפשרי כמעט בכל מזג אוויר",
+    title: "מפלי הריין ו-Lindt Home of Chocolate",
+    summary: "יום מעבר עם מפלים, שוקולד ושתי עצירות הגיוניות בדרך לאינטרלקן.",
+    duration: "2 עצירות בדרך",
+    drive: "כ-3–3.5 שעות נהיגה",
+    weather: "להזמין Lindt מראש",
     weatherproof: true,
     stops: [
       {
@@ -386,9 +386,19 @@ const activitySuggestions = [
           { label: "מפה", url: "https://www.google.com/maps/search/?api=1&query=Rhine+Falls+Switzerland" },
         ],
       },
+      {
+        name: "Lindt Home of Chocolate · קילכברג",
+        description: "מרכז המבקרים והמוזיאון של Lindt ליד ציריך, עם תצוגה אינטראקטיבית, טעימות וחנות. זהו מוזיאון שוקולד ולא סיור בקו הייצור.",
+        links: [
+          { label: "כרטיסים ומחירים", url: "https://www.lindt-home-of-chocolate.com/en/tickets-and-prices/" },
+          { label: "שעות פתיחה", url: "https://www.lindt-home-of-chocolate.com/en/lindt-home-of-chocolate-opening-times/" },
+          { label: "הזמנת כרטיסים", url: "https://tickets.lindt-home-of-chocolate.com/selection/timeslotpass?productId=101502126146&lang=en" },
+          { label: "מפה", url: "https://www.google.com/maps/search/?api=1&query=Lindt+Home+of+Chocolate+Kilchberg" },
+        ],
+      },
     ],
-    adviceTitle: "התיקון החשוב ביותר לרשימה",
-    advice: "המיקום מתאים בדיוק ליום המעבר ב-25.9. יוצאים אחרי הצ׳ק-אאוט ומשאירים מספיק זמן לנסיעה לאינטרלקן.",
+    adviceTitle: "יום מעבר מלא אך אפשרי",
+    advice: "יוצאים מיד אחרי הצ׳ק-אאוט, עוצרים במפלים ואז ב-Lindt וממשיכים לאינטרלקן. מומלץ להזמין מראש משבצת כניסה מוקדמת אחר הצהריים.",
   },
   {
     id: "aare-giessbach",
@@ -725,6 +735,10 @@ const attractionCardBenefits = {
       red: { status: "none", short: "לא תקף", detail: "המפלים נמצאים בשווייץ ומחוץ לרשת הכרטיס." },
       black: { status: "none", short: "לא תקף", detail: "המפלים נמצאים בשווייץ ומחוץ לרשת הכרטיס." },
     },
+    {
+      red: { status: "none", short: "לא תקף", detail: "Lindt נמצא בשווייץ ומחוץ לרשת הכרטיס." },
+      black: { status: "none", short: "לא תקף", detail: "Lindt נמצא בשווייץ ומחוץ לרשת הכרטיס." },
+    },
   ],
 };
 
@@ -877,6 +891,14 @@ const attractionPrices = {
       icon: "CHF",
       note: "התצפית בגדה הצפונית חינם; המחיר הוא למתחם Schloss Laufen. עד גיל 5 חינם.",
       url: "https://rheinfall.ch/en/inform/opening-hours-prices/list",
+    },
+    {
+      name: "Lindt Home of Chocolate",
+      adult: "CHF 17",
+      child: "CHF 10 (גיל 8–15)",
+      icon: "CHF",
+      note: "ילדים עד גיל 7 חינם. הכרטיס כולל סיור עצמאי במוזיאון עם מדריך קולי; מומלץ להזמין שעה מראש.",
+      url: "https://www.lindt-home-of-chocolate.com/en/tickets-and-prices/",
     },
   ],
   "aare-giessbach": [

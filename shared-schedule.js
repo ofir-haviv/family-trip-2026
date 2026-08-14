@@ -188,10 +188,12 @@ function renderSharedSchedule() {
       const assignment = fixed
         ? {
             ...FIXED_TRANSFER_DAY,
-            title: transferSuggestion?.title || "מפלי הריין בדרך לאינטרלקן",
+            title:
+              transferSuggestion?.title ||
+              "מפלי הריין ו-Lindt בדרך לאינטרלקן",
             summary:
               transferSuggestion?.summary ||
-              "עצירה של שעה עד שעה וחצי בדרך — לא יום פעילות מלא.",
+              "יום מעבר עם שתי עצירות: מפלי הריין ומוזיאון Lindt Home of Chocolate.",
           }
         : assignments.get(dateConfig.date);
 
@@ -279,8 +281,22 @@ function updateReplacementMessage() {
   const current = selectedDate ? currentAssignments.get(selectedDate) : null;
   if (!message) return;
 
-  message.hidden = !current || current.suggestionId === selectedSuggestion?.id;
-  if (!message.hidden) {
+  const movingToAnotherDate =
+    previousSuggestionDate && previousSuggestionDate !== selectedDate;
+  const replacingAnotherSuggestion =
+    current && current.suggestionId !== selectedSuggestion?.id;
+
+  message.hidden = !movingToAnotherDate && !replacingAnotherSuggestion;
+  if (message.hidden) return;
+
+  if (movingToAnotherDate && replacingAnotherSuggestion) {
+    const sourceDate = SCHEDULE_DATES.find(
+      (dateConfig) => dateConfig.date === previousSuggestionDate,
+    );
+    message.textContent = `השיבוצים יוחלפו: “${current.title}” יעבור ל-${sourceDate?.label || previousSuggestionDate}.`;
+  } else if (movingToAnotherDate) {
+    message.textContent = "הפעילות תעבור לתאריך החדש והתאריך הקודם יתפנה.";
+  } else {
     message.textContent = `השיבוץ “${current.title}” יוחלף.`;
   }
 }
