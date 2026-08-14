@@ -142,6 +142,29 @@ function getDisplayAssignments() {
   return scheduleLoaded ? currentAssignments : getFallbackAssignments();
 }
 
+function updateSuggestionScheduleMarkers() {
+  if (!isSuggestionsPage()) return;
+
+  const scheduledDates = new Map();
+  getDisplayAssignments().forEach((assignment, date) => {
+    const dates = scheduledDates.get(assignment.suggestionId) || [];
+    dates.push(SCHEDULE_DATES.find((item) => item.date === date)?.shortLabel || date);
+    scheduledDates.set(assignment.suggestionId, dates);
+  });
+  scheduledDates.set(FIXED_TRANSFER_DAY.suggestionId, [FIXED_TRANSFER_DAY.shortLabel]);
+
+  document.querySelectorAll(".suggestion-card").forEach((card) => {
+    const marker = card.querySelector("[data-scheduled-marker]");
+    const dates = scheduledDates.get(card.id) || [];
+    if (!marker) return;
+
+    card.classList.toggle("is-scheduled", dates.length > 0);
+    marker.hidden = dates.length === 0;
+    marker.querySelector("span").textContent =
+      dates.length === 1 ? `משובץ · ${dates[0]}` : `משובץ · ${dates.join(", ")}`;
+  });
+}
+
 function renderSharedSchedule() {
   const container = document.querySelector("#schedule-list");
   if (!container || !window.tripSuggestions) return;
@@ -206,6 +229,8 @@ function renderSharedSchedule() {
       `;
     })
     .join("");
+
+  updateSuggestionScheduleMarkers();
 }
 
 function getEligibleDates(suggestion) {

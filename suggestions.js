@@ -1184,6 +1184,13 @@ function renderSuggestions() {
               <span class="region-label">${suggestion.regionLabel}</span>
               <span class="fit-label">${suggestion.fit}</span>
             </div>
+            <div class="suggestion-scheduled-marker" data-scheduled-marker hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M16 3v4M8 3v4M3 10h18M8 15l2 2 5-5" />
+              </svg>
+              <span></span>
+            </div>
             <h3>${suggestion.title}</h3>
             <p class="suggestion-summary">${suggestion.summary}</p>
             <div class="day-metadata">
