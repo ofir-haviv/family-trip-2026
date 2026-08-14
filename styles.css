@@ -181,6 +181,51 @@ svg {
   width: 100%;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.auth-button {
+  display: inline-flex;
+  min-height: 42px;
+  padding: 0 13px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-button.authorized {
+  border-color: rgba(227, 188, 117, 0.55);
+  background: rgba(227, 188, 117, 0.14);
+  color: #f3ca82;
+}
+
+.auth-button.unauthorized {
+  border-color: rgba(221, 111, 104, 0.45);
+  color: #f1b0ab;
+}
+
+.auth-symbol {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 7px;
+  background: #fff;
+  color: #2e6150;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .icon-button {
   display: grid;
   width: 42px;
@@ -729,6 +774,15 @@ svg {
   color: #283a33;
 }
 
+.day-card-unscheduled {
+  opacity: 0.76;
+}
+
+.day-card-unscheduled .day-marker {
+  border-style: dashed;
+  background: var(--muted);
+}
+
 .day-date {
   display: flex;
   flex-direction: column;
@@ -775,6 +829,28 @@ svg {
   color: var(--forest-700);
   font-size: 12px;
   font-weight: 500;
+}
+
+.live-schedule-status {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.live-schedule-status[data-state="live"]::before,
+.plan-caption[data-state="live"]::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: #68ae8f;
+  content: "";
+}
+
+.live-schedule-status[data-state="offline"],
+.plan-caption[data-state="offline"] {
+  color: #c78555;
 }
 
 [data-theme="dark"] .activity-tag {
@@ -1343,6 +1419,35 @@ svg {
   transform: translate(50%, 0);
 }
 
+.schedule-toast {
+  position: fixed;
+  z-index: 300;
+  right: 50%;
+  bottom: 25px;
+  max-width: min(90vw, 430px);
+  padding: 11px 18px;
+  border-radius: 12px;
+  background: #0d211c;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transform: translate(50%, 20px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.schedule-toast[data-state="error"] {
+  background: #8e3935;
+}
+
+.schedule-toast.visible {
+  opacity: 1;
+  transform: translate(50%, 0);
+}
+
 @media (max-width: 1000px) {
   .desktop-nav {
     display: none;
@@ -1374,6 +1479,16 @@ svg {
   .site-header {
     height: 66px;
     padding: 0 18px;
+  }
+
+  .auth-button {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .auth-button > span:last-child {
+    display: none;
   }
 
   .hero {
@@ -1585,6 +1700,10 @@ svg {
   }
 
   .toast {
+    bottom: 84px;
+  }
+
+  .schedule-toast {
     bottom: 84px;
   }
 }

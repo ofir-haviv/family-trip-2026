@@ -209,6 +209,22 @@ const tripData = {
   ],
 };
 
+const EDITABLE_SCHEDULE_DATES = new Set([
+  "2026-09-20",
+  "2026-09-21",
+  "2026-09-22",
+  "2026-09-23",
+  "2026-09-24",
+  "2026-09-26",
+  "2026-09-27",
+  "2026-09-28",
+]);
+
+const statelessItinerary = tripData.itinerary.map((day) => ({
+  ...day,
+  tags: [...day.tags],
+}));
+
 const hebrewDate = new Intl.DateTimeFormat("he-IL", {
   weekday: "long",
   day: "numeric",
@@ -219,36 +235,82 @@ function parseLocalDate(dateString) {
   return new Date(`${dateString}T12:00:00`);
 }
 
+function escapeHtml(value = "") {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function renderItinerary() {
   const container = document.querySelector("#itinerary-list");
   if (!container) return;
 
   container.innerHTML = tripData.itinerary
     .map((day, index) => {
-      const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(day.mapQuery)}`;
-      const tags = day.tags.map((tag) => `<span class="activity-tag">${tag}</span>`).join("");
+      const mapUrl =
+        day.mapUrl ||
+        `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(day.mapQuery)}`;
+      const tags = day.tags.map((tag) => `<span class="activity-tag">${escapeHtml(tag)}</span>`).join("");
 
       return `
-        <article class="day-card" data-region="${day.region}">
+        <article class="day-card ${day.isUnscheduled ? "day-card-unscheduled" : ""}" data-region="${escapeHtml(day.region)}">
           <span class="day-marker">${index + 1}</span>
           <div class="day-date">
             <strong>${hebrewDate.format(parseLocalDate(day.date))}</strong>
             <span>יום ${index + 1} מתוך ${tripData.itinerary.length}</span>
           </div>
           <div class="day-main">
-            <h3>${day.title}</h3>
-            <p>${day.description}</p>
+            <h3>${escapeHtml(day.title)}</h3>
+            <p>${escapeHtml(day.description)}</p>
             <div class="activity-tags">${tags}</div>
           </div>
-          <a class="day-link" href="${mapUrl}" target="_blank" rel="noreferrer" aria-label="פתיחה במפה: ${day.title}">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14 5h5v5M10 14 19 5M19 14v5H5V5h5" />
-            </svg>
-          </a>
+          ${
+            day.isUnscheduled
+              ? `<a class="day-link" href="suggestions.html#day-catalog" aria-label="בחירת פעילות ל-${escapeHtml(day.title)}">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+                </a>`
+              : `<a class="day-link" href="${escapeHtml(mapUrl)}" target="_blank" rel="noreferrer" aria-label="פתיחה במפה: ${escapeHtml(day.title)}">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M14 5h5v5M10 14 19 5M19 14v5H5V5h5" />
+                  </svg>
+                </a>`
+          }
         </article>
       `;
     })
     .join("");
+}
+
+function applySharedSchedule(assignments) {
+  tripData.itinerary = statelessItinerary.map((day) => {
+    if (!EDITABLE_SCHEDULE_DATES.has(day.date)) return { ...day, tags: [...day.tags] };
+
+    const assignment = assignments.get(day.date);
+    if (!assignment) {
+      return {
+        ...day,
+        title: "טרם שובצה פעילות",
+        description: "היום פתוח לבחירה מתוך דף הרעיונות.",
+        tags: ["פתוח לשיבוץ"],
+        isUnscheduled: true,
+      };
+    }
+
+    return {
+      ...day,
+      title: assignment.title,
+      description: assignment.summary,
+      region: assignment.region,
+      tags: Array.isArray(assignment.tags) ? assignment.tags : [],
+      mapUrl: assignment.mapUrl,
+      isUnscheduled: false,
+    };
+  });
+
+  renderItinerary();
 }
 
 function renderBookings() {
@@ -516,7 +578,7 @@ function downloadCalendar() {
         `DTEND:${formatIcsDate(day.date, true)}`,
         `SUMMARY:${escapeIcs(day.title)}`,
         `DESCRIPTION:${escapeIcs(day.description)}`,
-        `LOCATION:${escapeIcs(day.mapQuery)}`,
+        `LOCATION:${escapeIcs(day.mapUrl || day.mapQuery)}`,
         "END:VEVENT",
       ].join("\r\n"),
     )
@@ -574,3 +636,6 @@ function init() {
 }
 
 init();
+
+window.tripApp = { applySharedSchedule };
+window.dispatchEvent(new CustomEvent("trip-app-ready"));

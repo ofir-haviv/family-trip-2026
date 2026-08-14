@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="suggestions.css" />
     <script src="suggestions.js" defer></script>
+    <script type="module" src="shared-schedule.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">דילוג לתוכן</a>
@@ -41,15 +42,21 @@
         <a href="index.html#packing">ציוד</a>
       </nav>
 
-      <button class="icon-button" id="theme-toggle" type="button" aria-label="החלפת מצב תצוגה">
-        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
-        </svg>
-        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.5 14.2A8.4 8.4 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
-        </svg>
-      </button>
+      <div class="header-actions">
+        <button class="auth-button" id="auth-button" type="button" aria-label="כניסה לעריכת הלו״ז עם Google">
+          <span class="auth-symbol" aria-hidden="true">G</span>
+          <span>כניסה לעריכה</span>
+        </button>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="החלפת מצב תצוגה">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 14.2A8.4 8.4 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
+          </svg>
+        </button>
+      </div>
     </header>
 
     <main id="main-content">
@@ -130,10 +137,14 @@
         <div class="recommended-plan-inner">
           <div class="section-heading">
             <div>
-              <span class="section-kicker">נקודת פתיחה טובה</span>
-              <h2 id="plan-title">תכנית מומלצת</h2>
+              <span class="section-kicker">משותף לכל המשפחה</span>
+              <h2 id="plan-title">הלו״ז המשפחתי</h2>
             </div>
-            <p class="plan-caption">לא הזמנה סופית — מחליפים בין הימים לפי התחזית ושעות הפעילות.</p>
+            <p class="plan-caption" data-schedule-status>מציגים את התכנית השמורה באתר</p>
+          </div>
+          <div class="editor-banner editor-only" id="editor-banner" hidden>
+            <span aria-hidden="true">✎</span>
+            <p>מצב עריכה פעיל עבור <strong></strong>. פתחו הצעה ובחרו “שיבוץ בלו״ז”.</p>
           </div>
           <div class="schedule-list" id="schedule-list"></div>
         </div>
@@ -193,6 +204,23 @@
       </section>
     </main>
 
+    <dialog class="schedule-dialog" id="schedule-dialog" aria-labelledby="schedule-dialog-title">
+      <div class="schedule-dialog-shell">
+        <button class="dialog-close" id="schedule-dialog-close" type="button" aria-label="סגירת חלון השיבוץ">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+        <span class="section-kicker">עריכת הלו״ז</span>
+        <h2 id="schedule-dialog-title">בחירת תאריך</h2>
+        <p>איפה לשבץ את <strong id="schedule-dialog-activity"></strong>?</p>
+        <div class="schedule-date-options" id="schedule-date-options"></div>
+        <p class="schedule-replacement-message" id="schedule-replacement-message" hidden></p>
+        <div class="schedule-dialog-actions">
+          <button class="button button-primary" id="schedule-dialog-save" type="button">שמירת השיבוץ</button>
+          <button class="button schedule-dialog-cancel" id="schedule-dialog-cancel" type="button">ביטול</button>
+        </div>
+      </div>
+    </dialog>
+
     <footer class="site-footer">
       <div>
         <span class="footer-mark" aria-hidden="true">▲</span>
@@ -223,5 +251,6 @@
         <span>ציוד</span>
       </a>
     </nav>
+    <div class="schedule-toast" id="schedule-toast" role="status" aria-live="polite"></div>
   </body>
 </html>

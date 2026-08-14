@@ -2,6 +2,7 @@
 
 const recommendedSchedule = [
   {
+    isoDate: "2026-09-20",
     date: "א׳ · 20.9",
     region: "היער השחור",
     title: "טיטיזי ו-Badeparadies",
@@ -9,6 +10,7 @@ const recommendedSchedule = [
     suggestionId: "titisee-badeparadies",
   },
   {
+    isoDate: "2026-09-21",
     date: "ב׳ · 21.9",
     region: "היער השחור",
     title: "פלדברג ו-FUNDORENA",
@@ -16,6 +18,7 @@ const recommendedSchedule = [
     suggestionId: "feldberg-fundorena",
   },
   {
+    isoDate: "2026-09-22",
     date: "ג׳ · 22.9",
     region: "היער השחור",
     title: "Europa-Park",
@@ -23,6 +26,7 @@ const recommendedSchedule = [
     suggestionId: "europa-park",
   },
   {
+    isoDate: "2026-09-23",
     date: "ד׳ · 23.9",
     region: "היער השחור",
     title: "גוטאך והחיים ביער השחור",
@@ -30,6 +34,7 @@ const recommendedSchedule = [
     suggestionId: "gutach-day",
   },
   {
+    isoDate: "2026-09-24",
     date: "ה׳ · 24.9",
     region: "היער השחור",
     title: "טודנאו: מפל ומגלשות הרים",
@@ -37,6 +42,7 @@ const recommendedSchedule = [
     suggestionId: "todtnau-day",
   },
   {
+    isoDate: "2026-09-25",
     date: "ו׳ · 25.9",
     region: "יום מעבר",
     title: "מפלי הריין בדרך לאינטרלקן",
@@ -44,6 +50,7 @@ const recommendedSchedule = [
     suggestionId: "rhine-falls-transfer",
   },
   {
+    isoDate: "2026-09-26",
     date: "ש׳ · 26.9",
     region: "שווייץ",
     title: "טירת אוברהופן ואגם תון",
@@ -51,6 +58,7 @@ const recommendedSchedule = [
     suggestionId: "oberhofen-thun",
   },
   {
+    isoDate: "2026-09-27",
     date: "א׳ · 27.9",
     region: "שווייץ",
     title: "לאוטרברונן, טרומלבך וונגן",
@@ -58,6 +66,7 @@ const recommendedSchedule = [
     suggestionId: "lauterbrunnen-wengen",
   },
   {
+    isoDate: "2026-09-28",
     date: "ב׳ · 28.9",
     region: "שווייץ",
     title: "קניון הארה ומפלי גייסבך",
@@ -1204,6 +1213,21 @@ function renderSuggestions() {
               <strong>${suggestion.adviceTitle}</strong>
               <p>${suggestion.advice}</p>
             </div>
+            ${
+              suggestion.id !== "rhine-falls-transfer"
+                ? `
+                  <div class="suggestion-schedule-editor editor-only" hidden>
+                    <div>
+                      <strong>רוצים את היום הזה בלו״ז?</strong>
+                      <span>בחרו תאריך מתאים והפעילות תתעדכן אצל כולם.</span>
+                    </div>
+                    <button class="schedule-suggestion-button" type="button" data-schedule-suggestion="${suggestion.id}">
+                      שיבוץ בלו״ז
+                    </button>
+                  </div>
+                `
+                : ""
+            }
           </div>
         </details>
       `;
@@ -1273,3 +1297,6 @@ function init() {
 }
 
 init();
+
+window.tripSuggestions = { activitySuggestions, recommendedSchedule };
+window.dispatchEvent(new CustomEvent("trip-suggestions-ready"));

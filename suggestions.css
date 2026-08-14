@@ -191,6 +191,44 @@
   margin-bottom: 38px;
 }
 
+.editor-banner {
+  display: flex;
+  margin: -18px 0 28px;
+  padding: 14px 17px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(239, 197, 126, 0.28);
+  border-radius: 14px;
+  background: rgba(239, 197, 126, 0.09);
+  color: #e7efe9;
+}
+
+.editor-banner[hidden] {
+  display: none;
+}
+
+.editor-banner > span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  border-radius: 10px;
+  background: #efc57e;
+  color: #183d32;
+  font-weight: 800;
+}
+
+.editor-banner p {
+  margin: 0;
+  color: #c5d5ce;
+  font-size: 13px;
+}
+
+.editor-banner strong {
+  color: #efc57e;
+}
+
 .plan-caption {
   max-width: 440px;
   margin: 0;
@@ -213,6 +251,11 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.055);
+}
+
+.schedule-day-empty {
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .schedule-day::after {
@@ -271,6 +314,30 @@
 
 .schedule-day a:hover {
   text-decoration: underline;
+}
+
+.schedule-card-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  margin-top: 18px;
+  align-items: center;
+  gap: 14px;
+}
+
+.schedule-card-actions a {
+  margin-top: 0;
+}
+
+.schedule-card-actions button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #dba6a1;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .catalog-heading {
@@ -859,6 +926,150 @@
   font-size: 13px;
 }
 
+.suggestion-schedule-editor {
+  display: flex;
+  margin-top: 20px;
+  padding: 15px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--forest-100);
+}
+
+.suggestion-schedule-editor[hidden] {
+  display: none;
+}
+
+.suggestion-schedule-editor > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-schedule-editor strong {
+  color: var(--forest-700);
+  font-size: 13px;
+}
+
+.suggestion-schedule-editor span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.schedule-suggestion-button {
+  min-height: 38px;
+  padding: 0 14px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 10px;
+  background: var(--forest-800);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.schedule-dialog {
+  width: min(620px, calc(100% - 32px));
+  max-height: min(90vh, 760px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+}
+
+.schedule-dialog::backdrop {
+  background: rgba(5, 22, 17, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.schedule-dialog-shell {
+  position: relative;
+  max-height: min(90vh, 760px);
+  padding: 34px;
+  overflow-y: auto;
+}
+
+.schedule-dialog h2 {
+  margin: 4px 0 3px;
+  font-family: "Secular One", "Heebo", sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+}
+
+.schedule-dialog-shell > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.schedule-date-options {
+  display: grid;
+  margin-top: 22px;
+  gap: 9px;
+}
+
+.schedule-date-option {
+  display: flex;
+  padding: 13px 15px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.schedule-date-option:has(input:checked) {
+  border-color: var(--forest-700);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--forest-700) 18%, transparent);
+}
+
+.schedule-date-option input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--forest-700);
+}
+
+.schedule-date-option > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-date-option strong {
+  font-size: 14px;
+}
+
+.schedule-date-option small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.schedule-replacement-message {
+  margin-top: 14px !important;
+  padding: 10px 12px;
+  border-right: 3px solid var(--gold);
+  border-radius: 8px 0 0 8px;
+  background: var(--gold-soft);
+  font-size: 12px;
+}
+
+.schedule-dialog-actions {
+  display: flex;
+  margin-top: 22px;
+  gap: 10px;
+}
+
+.schedule-dialog-cancel {
+  border-color: var(--line);
+  background: var(--paper);
+  color: var(--ink);
+}
+
 .empty-state {
   padding: 50px;
   border: 1px dashed var(--line);
@@ -972,6 +1183,19 @@
 
   .suggestion-content {
     padding: 0 22px 22px;
+  }
+
+  .suggestion-schedule-editor {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .schedule-suggestion-button {
+    width: 100%;
+  }
+
+  .schedule-dialog-shell {
+    padding: 30px 18px 22px;
   }
 
   .benefit-guide-grid {

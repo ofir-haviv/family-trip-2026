@@ -1,4 +1,4 @@
-const CACHE_NAME = "family-trip-2026-v8";
+const CACHE_NAME = "family-trip-2026-v10";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,6 +7,8 @@ const ASSETS = [
   "./suggestions.html",
   "./suggestions.css",
   "./suggestions.js",
+  "./firebase-client.js",
+  "./shared-schedule.js",
   "./site-icon-192.png",
   "./site-icon-512.png",
   "./manifest.webmanifest",
@@ -27,7 +29,12 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+  if (
+    event.request.method !== "GET" ||
+    new URL(event.request.url).origin !== self.location.origin
+  ) {
+    return;
+  }
 
   event.respondWith(
     fetch(event.request)

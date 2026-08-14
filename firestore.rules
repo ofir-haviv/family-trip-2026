@@ -1,0 +1,104 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthorizedEditor() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email == "havivi1986@gmail.com";
+    }
+
+    function isAllowedDate(date) {
+      return date in [
+        "2026-09-20",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-26",
+        "2026-09-27",
+        "2026-09-28"
+      ];
+    }
+
+    function isBlackForestSuggestion(suggestionId) {
+      return suggestionId in [
+        "europa-park",
+        "rulantica",
+        "titisee-badeparadies",
+        "feldberg-fundorena",
+        "todtnau-day",
+        "gutach-day",
+        "park-all-senses",
+        "vogelpark-steinen",
+        "wutach-gorge",
+        "steinwasen"
+      ];
+    }
+
+    function isSwissSuggestion(suggestionId) {
+      return suggestionId in [
+        "aare-giessbach",
+        "oberhofen-thun",
+        "lauterbrunnen-wengen",
+        "titlis",
+        "brienz-rothorn",
+        "grindelwald-first",
+        "interlaken-flex"
+      ];
+    }
+
+    function isValidPlacement(date, data) {
+      return (
+        date in ["2026-09-20", "2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24"]
+        && data.region == "black-forest"
+        && isBlackForestSuggestion(data.suggestionId)
+      ) || (
+        date in ["2026-09-26", "2026-09-27", "2026-09-28"]
+        && data.region == "switzerland"
+        && isSwissSuggestion(data.suggestionId)
+      );
+    }
+
+    function isValidAssignment(date) {
+      let data = request.resource.data;
+      return isAllowedDate(date)
+        && data.keys().hasOnly([
+          "date",
+          "suggestionId",
+          "title",
+          "summary",
+          "region",
+          "tags",
+          "mapUrl",
+          "updatedBy",
+          "updatedAt"
+        ])
+        && data.date == date
+        && data.suggestionId is string
+        && data.title is string
+        && data.title.size() > 0
+        && data.title.size() <= 120
+        && data.summary is string
+        && data.summary.size() > 0
+        && data.summary.size() <= 500
+        && data.tags is list
+        && data.tags.size() == 2
+        && data.mapUrl is string
+        && data.mapUrl.matches("^https://.*")
+        && data.updatedBy == request.auth.token.email
+        && data.updatedAt == request.time
+        && isValidPlacement(date, data);
+    }
+
+    match /schedule/{date} {
+      allow read: if true;
+      allow create, update: if isAuthorizedEditor() && isValidAssignment(date);
+      allow delete: if isAuthorizedEditor() && isAllowedDate(date);
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
