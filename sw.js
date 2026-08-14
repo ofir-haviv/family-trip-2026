@@ -1,9 +1,10 @@
-const CACHE_NAME = "family-trip-2026-v13";
+const CACHE_NAME = "family-trip-2026-v14";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./weather.js",
   "./suggestions.html",
   "./suggestions.css",
   "./suggestions.js",

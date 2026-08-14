@@ -17,6 +17,7 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
+    <script src="weather.js" defer></script>
     <script type="module" src="shared-schedule.js"></script>
   </head>
   <body>
@@ -36,6 +37,7 @@
       <nav class="desktop-nav" aria-label="ניווט ראשי">
         <a href="#overview">מבט מהיר</a>
         <a href="#itinerary">מסלול</a>
+        <a href="#weather">מזג אוויר</a>
         <a href="suggestions.html">רעיונות לימים</a>
         <a href="#bookings">הזמנות</a>
         <a href="#packing">ציוד</a>
@@ -168,16 +170,36 @@
               <small>איסוף 12:00 · החזרה 17:00</small>
             </div>
           </article>
-          <article class="summary-card">
+          <a class="summary-card summary-card-link" href="#weather">
             <span class="summary-icon summary-icon-weather" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 1 1 1.2-7.8A6 6 0 0 1 20 11a3 3 0 0 1-1 5.8M8 21l2-3M13 21l2-3M18 21l2-3" /></svg>
             </span>
             <div>
-              <span>מזג אוויר צפוי</span>
-              <strong>8°–20°</strong>
-              <small>שכבות ומעיל גשם</small>
+              <span>תחזית ל-7 ימים</span>
+              <strong id="weather-summary-range">טוענים…</strong>
+              <small>לופינגן ואינטרלקן</small>
             </div>
-          </article>
+          </a>
+        </div>
+      </section>
+
+      <section class="weather-section" id="weather" aria-labelledby="weather-title">
+        <div class="weather-section-inner">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">מתעדכן אוטומטית</span>
+              <h2 id="weather-title">תחזית ל-7 הימים הקרובים</h2>
+              <p class="weather-intro">סביב שני מקומות הלינה שלנו — לופינגן ביער השחור ואינטרלקן בשווייץ.</p>
+            </div>
+            <div class="weather-source">
+              <span id="weather-updated">טוענים תחזית…</span>
+              <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">נתונים: Open-Meteo</a>
+            </div>
+          </div>
+          <div class="weather-forecast" id="weather-forecast" aria-live="polite"></div>
+          <p class="weather-disclaimer">
+            התחזית מציגה את שבעת הימים הקרובים בלבד ומשתנה עם עדכוני מודלי מזג האוויר. לפני כל פעילות כדאי לבדוק שוב.
+          </p>
         </div>
       </section>
 
